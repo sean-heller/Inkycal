@@ -10,3 +10,9 @@ lib/
 share/
 lib64
 pyvenv.cfg
+
+# local settings
+settings.json
+
+#logs
+logs

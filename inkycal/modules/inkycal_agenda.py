@@ -4,6 +4,7 @@
 Agenda module for Inky-Calendar Project
 Copyright by aceisace
 """
+import json
 
 from inkycal.modules.template import inkycal_module
 from inkycal.custom import *
@@ -150,9 +151,19 @@ class Agenda(inkycal_module):
       logger.info('Managed to parse events from urls')
 
       # Find out how much space the event times take
-      time_width = int(max([self.font.getsize(
-          events['begin'].format(self.time_format, locale=self.language))[0]
-          for events in upcoming_events]) * 1.2)
+
+
+      max_size = 0
+      for events in upcoming_events:
+        start = events['begin'].format(self.time_format)
+        end_time = events['end'].format(self.time_format)
+        time = "{} - {}".format(start, end_time)
+        size = self.font.getsize(time.format(self.time_format, locale=self.language))[0]
+        if size > max_size:
+          max_size = size
+
+
+      time_width = int((max_size) * 1.2)
       logger.debug(f'time_width: {time_width}')
 
       # Calculate x-pos for time
@@ -196,7 +207,9 @@ class Agenda(inkycal_module):
 
         # Check if item is an event
         if 'end' in _:
-          time = _['begin'].format(self.time_format)
+          start = _['begin'].format(self.time_format)
+          end_time = _['end'].format(self.time_format)
+          time = "{} - {}".format(start, end_time)
 
           # Check if event is all day, if not, add the time
           if parser.all_day(_) == False:
@@ -231,3 +244,8 @@ class Agenda(inkycal_module):
 
 if __name__ == '__main__':
   print(f'running {filename} in standalone mode')
+  # with open('/Users/seanheller/dev/personal/Inkycal/settings.json') as settings_file:
+  #   settings = json.load(settings_file)
+  #   img,color = Agenda(settings["modules"][0]).generate_image()
+  #   img.save(f"moduleagenda_black.png", "PNG")
+  #   color.save(f"moduleagenda_color.png", "PNG")
