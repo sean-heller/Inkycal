@@ -53,7 +53,7 @@ if [ "$option" = 1 ] || [ "$option" = 2 ]; then
 
     # Cloning Inky-Calendar repo
     echo -e "\e[1;36m"Cloning Inkycal repo from Github"\e[0m"
-    cd /home/"$USER" && git clone https://github.com/aceisace/Inkycal
+    cd /home/"$USER" && git clone https://github.com/sean-heller/Inkycal
 
     # Installing dependencies
     echo -e "\e[1;36m"Installing Inkycal.."\e[0m"
