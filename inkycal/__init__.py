@@ -3,6 +3,7 @@ from inkycal.display import Display
 
 # Default modules
 import inkycal.modules.inkycal_agenda
+import inkycal.modules.inkycal_dayplanner
 import inkycal.modules.inkycal_calendar
 import inkycal.modules.inkycal_weather
 import inkycal.modules.inkycal_feeds
