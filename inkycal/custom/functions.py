@@ -131,7 +131,7 @@ def write(image, xy, box_size, text, font=None, **kwargs):
       maximum of 90% of the size of the full height of the text-box.
   """
   allowed_kwargs = ['alignment', 'autofit', 'colour', 'rotation',
-                    'fill_width', 'fill_height', 'fill_colour']
+                    'fill_width', 'fill_height']
 
   # Validate kwargs
   for key, value in kwargs.items():
@@ -145,7 +145,6 @@ def write(image, xy, box_size, text, font=None, **kwargs):
   fill_height = kwargs['fill_height'] if 'fill_height' in kwargs else 0.8
   colour = kwargs['colour'] if 'colour' in kwargs else 'black'
   rotation = kwargs['rotation'] if 'rotation' in kwargs else None
-  fill_colour = kwargs['fill_colour'] if 'fill_colour' in kwargs else None
 
   x,y = xy
   box_width, box_height = box_size
@@ -192,9 +191,8 @@ def write(image, xy, box_size, text, font=None, **kwargs):
   #space = Image.new('RGBA', (box_width, box_height), color="red")
   #ImageDraw.Draw(space).text((x, y), text, fill='white', font=font)
 
-  if fill_colour != None:
-    space = Image.new('RGBA', (box_width, box_height), color=fill_colour)
-    ImageDraw.Draw(space).text((x, y), text, fill='white', font=font)
+  #space = Image.new('RGBA', (box_width, box_height), color= 'red')
+  #ImageDraw.Draw(space).text((x, y), text, fill='white', font=font)
 
   if rotation != None:
     space.rotate(rotation, expand = True)

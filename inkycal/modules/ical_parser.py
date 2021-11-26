@@ -139,9 +139,7 @@ class iCalendar:
 
       'end':arrow.get(events.get("DTEND").dt).to(timezone) if (
         arrow.get(events.get('dtstart').dt).format('HH:mm') != '00:00')
-        else arrow.get(events.get('DTEND').dt).replace(tzinfo=timezone),
-
-      'freebusy': "free" if (events.get('TRANSP') == 'TRANSPARENT') else 'busy'
+        else arrow.get(events.get('DTEND').dt).replace(tzinfo=timezone)
 
       } for ical in recurring_events for events in ical)
 
