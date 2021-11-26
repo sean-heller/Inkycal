@@ -8,4 +8,5 @@ from .inkycal_jokes import Jokes
 from .inkycal_stocks import Stocks
 from .inkycal_slideshow import Slideshow
 from .inkycal_agenda import Agenda
+from .inkycal_dateandtime import DateAndTime
 #from .inkycal_server import Inkyserver

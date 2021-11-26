@@ -246,9 +246,3 @@ class Agenda(inkycal_module):
 
 if __name__ == '__main__':
   print(f'running {filename} in standalone mode')
-  with open('/Users/dcostoy/PycharmProjects/Inkycal/settings.json') as settings_file:
-    settings = json.load(settings_file)
-    img,color = Agenda(settings["modules"][0]).generate_image()
-    img.save(f"moduledayplanner_black.png", "PNG")
-    color.save(f"moduledayplanner_color.png", "PNG")
-    merged = images.merger.merge("moduledayplanner_black.png", "moduledayplanner_color.png", "moduledayplanner_merged")

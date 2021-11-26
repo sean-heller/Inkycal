@@ -189,6 +189,8 @@ def write(image, xy, box_size, text, font=None, **kwargs):
 
   # Uncomment following two lines, comment out above two lines to show
   # red text-box with white text (debugging purposes)
+  #space = Image.new('RGBA', (box_width, box_height), color="red")
+  #ImageDraw.Draw(space).text((x, y), text, fill='white', font=font)
 
   if fill_colour != None:
     space = Image.new('RGBA', (box_width, box_height), color=fill_colour)
@@ -199,6 +201,7 @@ def write(image, xy, box_size, text, font=None, **kwargs):
 
   # Update only region with text (add text with transparent background)
   image.paste(space, xy, space)
+
 
 
 def text_wrap(text, font=None, max_width = None):

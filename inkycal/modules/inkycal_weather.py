@@ -110,6 +110,7 @@ class Weather(inkycal_module):
 
 
   def generate_image(self):
+
     """Generate image for this module"""
 
     # Define new image size with respect to padding
@@ -217,7 +218,7 @@ class Weather(inkycal_module):
 
 
     # Calculate size rows and columns
-    col_width = im_width // 7
+    col_width = im_width // 6
 
     # Ratio width height
     image_ratio = im_width / im_height
@@ -399,7 +400,7 @@ class Weather(inkycal_module):
                                                          self.locale)
         return {'temp':temp_range, 'icon':status, 'stamp': weekday}
 
-      forecasts = [calculate_forecast(days) for days in range (1,5)]
+      forecasts = [calculate_forecast(days) for days in range (1,4)]
 
       fc_data = {}
       for forecast in forecasts:
@@ -446,17 +447,18 @@ class Weather(inkycal_module):
 
       elif self.units == 'imperial':
         logging.debug('getting windspeed in imperial unit')
-        wind = str(weather.wind(unit='miles_hour')['speed']) + 'miles/h'
+        wind = str(int(weather.wind(unit='miles_hour')['speed'])) + 'mph'
 
     dec = decimal.Decimal
     moonphase = get_moon_phase()
 
+    icon_image = im_black
     # Fill weather details in col 1 (current weather icon)
-    draw_icon(im_colour, weather_icon_pos, (col_width, im_height),
+    draw_icon(icon_image, weather_icon_pos, (col_width, im_height),
               weathericons[weather_icon])
 
     # Fill weather details in col 2 (temp, humidity, wind)
-    draw_icon(im_colour, temperature_icon_pos, (icon_small, row_height),
+    draw_icon(icon_image, temperature_icon_pos, (icon_small, row_height),
               '\uf053')
 
     if is_negative(temperature):
@@ -466,26 +468,26 @@ class Weather(inkycal_module):
        write(im_black, temperature_pos, (col_width-icon_small, row_height),
           temperature, font = self.font)
 
-    draw_icon(im_colour, humidity_icon_pos, (icon_small, row_height),
+    draw_icon(icon_image, humidity_icon_pos, (icon_small, row_height),
           '\uf07a')
 
     write(im_black, humidity_pos, (col_width-icon_small, row_height),
           humidity+'%', font = self.font)
 
-    draw_icon(im_colour, windspeed_icon_pos, (icon_small, icon_small),
+    draw_icon(icon_image, windspeed_icon_pos, (icon_small, icon_small),
                 '\uf050')
 
     write(im_black, windspeed_pos, (col_width-icon_small, row_height),
           wind, font=self.font)
 
     # Fill weather details in col 3 (moonphase, sunrise, sunset)
-    draw_icon(im_colour, moonphase_pos, (col_width, row_height), moonphase)
+    draw_icon(icon_image, moonphase_pos, (col_width, row_height), moonphase)
 
-    draw_icon(im_colour, sunrise_icon_pos, (icon_small, icon_small), '\uf051')
+    draw_icon(icon_image, sunrise_icon_pos, (icon_small, icon_small), '\uf051')
     write(im_black, sunrise_time_pos, (col_width-icon_small, row_height),
           sunrise, font = self.font)
 
-    draw_icon(im_colour, sunset_icon_pos, (icon_small, icon_small), '\uf052')
+    draw_icon(icon_image, sunset_icon_pos, (icon_small, icon_small), '\uf052')
     write(im_black, sunset_time_pos, (col_width-icon_small, row_height), sunset,
           font = self.font)
 
@@ -498,25 +500,43 @@ class Weather(inkycal_module):
 
       write(im_black, eval(f'stamp_fc{pos}'), (col_width, row_height),
         stamp, font = self.font)
-      draw_icon(im_colour, eval(f'icon_fc{pos}'), (col_width, row_height+line_gap*2),
+      draw_icon(icon_image, eval(f'icon_fc{pos}'), (col_width, row_height+line_gap*2),
         icon)
       write(im_black, eval(f'temp_fc{pos}'), (col_width, row_height),
         temp, font = self.font)
 
 
+
+
+
     border_h = row3 + row_height
     border_w = col_width - 3 #leave 3 pixels gap
 
+    line_to_right = ImageDraw.Draw(im_black)
+    # line_to_right.line(((col1+border_w, row1), (col1+border_w, row1+border_h)), fill="black", width=1)
+
     # Add borders around each sub-section
-    draw_border(im_black, (col1, row1), (col_width*3 - 3, border_h),
-                shrinkage=(0,0))
+    # draw_border(im_black, (col1, row1), (col_width*3 - 3, border_h),
+    #            shrinkage=(0,0))
 
-    for _ in range(4,8):
-      draw_border(im_black, (eval(f'col{_}'), row1), (border_w, border_h),
-                  shrinkage=(0,0))
+    for _ in range(2, 6):
+      #  draw_border(im_black, (eval(f'col{_}'), row1), (border_w, border_h),
+      #              shrinkage=(0,0))
+      line_to_right.line(((eval(f'col{_}') + border_w, row1),(eval(f'col{_}') + border_w, row1 + border_h)),
+                         fill="black", width=1)
 
+    bottom_line = ImageDraw.Draw(im_black)
+    bottom_line.line(((0, self.height-2), (self.width, self.height-2)), fill="black", width=1)
     # return the images ready for the display
     return im_black, im_colour
 
 if __name__ == '__main__':
   print(f'running {filename} in standalone mode')
+  with open('/Users/dcostoy/PycharmProjects/Inkycal/settings.json') as settings_file:
+    import json
+    settings = json.load(settings_file)
+    img, color = Weather(settings["modules"][0]).generate_image()
+    img.save(f"module_weather_black.png", "PNG")
+    color.save(f"module_weather_color.png", "PNG")
+    merged = images.merger.merge("module_weather_black.png", "module_weather_black_color.png",
+                                 "module_weather_merged")

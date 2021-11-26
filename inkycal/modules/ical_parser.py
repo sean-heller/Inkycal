@@ -152,8 +152,6 @@ class iCalendar:
     # Sort events by their beginning date
     self.sort()
 
-    print(self.parsed_events)
-
     return self.parsed_events
 
   def sort(self):
