@@ -1,4 +1,3 @@
-from inkycal.modules.ical_parser import iCalendar
 from inkycal.modules.template import inkycal_module
 from inkycal.custom import *
 import arrow
@@ -80,7 +79,7 @@ class DateAndTime(inkycal_module):
 
 if __name__ == '__main__':
     print(f'running {filename} in standalone mode')
-    from images.merger import merge
+    from inkycal.custom.merger import merge
     with open('/Users/dcostoy/PycharmProjects/Inkycal/settings.json') as settings_file:
         settings = json.load(settings_file)
         img, color = DateAndTime(settings["modules"][2]).generate_image()
