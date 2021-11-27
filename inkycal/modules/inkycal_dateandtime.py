@@ -3,7 +3,7 @@ from inkycal.modules.template import inkycal_module
 from inkycal.custom import *
 import arrow
 import json
-from images import merger
+
 
 # Get the name of this file, set up logging for this filename
 filename = os.path.basename(__file__).split('.py')[0]
@@ -80,10 +80,11 @@ class DateAndTime(inkycal_module):
 
 if __name__ == '__main__':
     print(f'running {filename} in standalone mode')
+    from images.merger import merge
     with open('/Users/dcostoy/PycharmProjects/Inkycal/settings.json') as settings_file:
         settings = json.load(settings_file)
         img, color = DateAndTime(settings["modules"][2]).generate_image()
         img.save(f"module_dateandtime_black.png", "PNG")
         color.save(f"module_dateandtime_color.png", "PNG")
-        merged = merger.merge("module_dateandtime_black.png", "module_dateandtime_color.png",
+        merged = merge("module_dateandtime_black.png", "module_dateandtime_color.png",
                                      "module_dateandtime_merged")

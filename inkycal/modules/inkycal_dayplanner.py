@@ -16,7 +16,7 @@ from inkycal.modules.template import inkycal_module
 from inkycal.custom import *
 import arrow
 import json
-from images import merger
+
 
 # Get the name of this file, set up logging for this filename
 filename = os.path.basename(__file__).split('.py')[0]
@@ -300,11 +300,12 @@ class DayPlanner(inkycal_module):
         return events
 
 if __name__ == '__main__':
+    from images.merger import merge
     print(f'running {filename} in standalone mode')
     with open('/Users/dcostoy/PycharmProjects/Inkycal/settings.json') as settings_file:
         settings = json.load(settings_file)
         img, color = DayPlanner(settings["modules"][1]).generate_image()
         img.save(f"module_dayplanner_black.png", "PNG")
         color.save(f"module_dayplanner_color.png", "PNG")
-        merged = merger.merge("module_dayplanner_black.png", "module_dayplanner_color.png",
+        merged = merge("module_dayplanner_black.png", "module_dayplanner_color.png",
                                      "module_dayplanner_merged")

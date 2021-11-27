@@ -9,7 +9,7 @@ import json
 from inkycal.modules.template import inkycal_module
 from inkycal.custom import *
 from inkycal.modules.ical_parser import iCalendar
-from images.merger import merge
+
 
 import calendar as cal
 import arrow

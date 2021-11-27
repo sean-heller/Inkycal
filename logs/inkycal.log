@@ -3876,3 +3876,130 @@ pyowm.commons.exceptions.TimeoutError: API call timeouted
 26-11-2021 18:09:01 | inkycal_weather |  INFO: Connection test passed
 26-11-2021 18:09:01 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
 26-11-2021 18:09:04 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:51:39 | main |  INFO: name : DateAndTime size : 480x150 px
+26-11-2021 22:51:39 | main |  INFO: name : Weather size : 480x80 px
+26-11-2021 22:51:39 | main |  INFO: name : DayPlanner size : 480x650 px
+26-11-2021 22:51:39 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:51:39 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:51:40 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:51:40 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:51:42 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:51:43 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:51:43 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:51:43 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:51:43 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:51:46 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:51:46 | main |  ERROR: Exception in module 3
+Traceback (most recent call last):
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/main.py", line 279, in run
+    black,colour=module.generate_image()
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 145, in generate_image
+    self.get_status_banner(im_black=im_black, im_colour=im_colour, events=events, now=now)
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 207, in get_status_banner
+    if self.get_status_now(events, now) == "busy":
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 202, in get_status_now
+    if iCalendar.all_day(_) and _["freebusy"] == "busy":
+KeyError: 'freebusy'
+26-11-2021 22:52:00 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:52:00 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:52:01 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:52:01 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:52:04 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:52:04 | main |  ERROR: Exception in module 3
+Traceback (most recent call last):
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/main.py", line 279, in run
+    black,colour=module.generate_image()
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 145, in generate_image
+    self.get_status_banner(im_black=im_black, im_colour=im_colour, events=events, now=now)
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 207, in get_status_banner
+    if self.get_status_now(events, now) == "busy":
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 202, in get_status_now
+    if iCalendar.all_day(_) and _["freebusy"] == "busy":
+KeyError: 'freebusy'
+26-11-2021 22:53:00 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:53:00 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:53:01 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:53:01 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:53:04 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:53:04 | main |  ERROR: Exception in module 3
+Traceback (most recent call last):
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/main.py", line 279, in run
+    black,colour=module.generate_image()
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 145, in generate_image
+    self.get_status_banner(im_black=im_black, im_colour=im_colour, events=events, now=now)
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 207, in get_status_banner
+    if self.get_status_now(events, now) == "busy":
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 202, in get_status_now
+    if iCalendar.all_day(_) and _["freebusy"] == "busy":
+KeyError: 'freebusy'
+26-11-2021 22:54:00 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:54:00 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:54:01 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:54:01 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:54:03 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:54:03 | main |  ERROR: Exception in module 3
+Traceback (most recent call last):
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/main.py", line 279, in run
+    black,colour=module.generate_image()
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 145, in generate_image
+    self.get_status_banner(im_black=im_black, im_colour=im_colour, events=events, now=now)
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 207, in get_status_banner
+    if self.get_status_now(events, now) == "busy":
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 202, in get_status_now
+    if iCalendar.all_day(_) and _["freebusy"] == "busy":
+KeyError: 'freebusy'
+26-11-2021 22:55:00 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:55:00 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:55:01 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:55:01 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:55:04 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:55:04 | main |  ERROR: Exception in module 3
+Traceback (most recent call last):
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/main.py", line 279, in run
+    black,colour=module.generate_image()
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 145, in generate_image
+    self.get_status_banner(im_black=im_black, im_colour=im_colour, events=events, now=now)
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 207, in get_status_banner
+    if self.get_status_now(events, now) == "busy":
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 202, in get_status_now
+    if iCalendar.all_day(_) and _["freebusy"] == "busy":
+KeyError: 'freebusy'
+26-11-2021 22:56:00 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:56:00 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:56:01 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:56:01 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:56:04 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:56:04 | main |  ERROR: Exception in module 3
+Traceback (most recent call last):
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/main.py", line 279, in run
+    black,colour=module.generate_image()
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 145, in generate_image
+    self.get_status_banner(im_black=im_black, im_colour=im_colour, events=events, now=now)
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 207, in get_status_banner
+    if self.get_status_now(events, now) == "busy":
+  File "/Users/dcostoy/PycharmProjects/Inkycal/inkycal/modules/inkycal_dayplanner.py", line 202, in get_status_now
+    if iCalendar.all_day(_) and _["freebusy"] == "busy":
+KeyError: 'freebusy'
+26-11-2021 22:56:09 | main |  INFO: name : DateAndTime size : 480x150 px
+26-11-2021 22:56:09 | main |  INFO: name : Weather size : 480x80 px
+26-11-2021 22:56:09 | main |  INFO: name : DayPlanner size : 480x650 px
+26-11-2021 22:56:09 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:56:09 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:56:10 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:56:10 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:56:12 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:56:13 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:56:13 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:56:14 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:56:14 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:56:17 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:57:00 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:57:00 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:57:01 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:57:01 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:57:04 | ical_parser |  INFO: loaded iCalendars from URLs
+26-11-2021 22:58:00 | inkycal_dateandtime |  INFO: image size: 480 x 150 px
+26-11-2021 22:58:00 | inkycal_weather |  INFO: Image size: (480, 80)
+26-11-2021 22:58:00 | inkycal_weather |  INFO: Connection test passed
+26-11-2021 22:58:00 | inkycal_dayplanner |  INFO: image size: 480 x 650 px
+26-11-2021 22:58:03 | ical_parser |  INFO: loaded iCalendars from URLs
