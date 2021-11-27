@@ -300,7 +300,7 @@ class DayPlanner(inkycal_module):
         return events
 
 if __name__ == '__main__':
-    from images.merger import merge
+    from inkycal.custom.merger import merge
     print(f'running {filename} in standalone mode')
     with open('/Users/dcostoy/PycharmProjects/Inkycal/settings.json') as settings_file:
         settings = json.load(settings_file)
