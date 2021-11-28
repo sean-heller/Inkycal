@@ -17,3 +17,6 @@ settings.json
 
 #logs
 *.log
+
+#.idea
+.idea
