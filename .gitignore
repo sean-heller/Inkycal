@@ -17,3 +17,7 @@ settings.json
 
 #logs
 *.log
+
+#.idea
+.idea
+/logs/inkycal.log.*
