@@ -17,10 +17,10 @@ from inkycal.custom import *
 import arrow
 import json
 
-
 # Get the name of this file, set up logging for this filename
 filename = os.path.basename(__file__).split('.py')[0]
 logger = logging.getLogger(filename)
+
 
 #############################################################################
 #                         DayPlanner Class
@@ -87,7 +87,7 @@ class DayPlanner(inkycal_module):
             self.ical_files = config['ical_files']
 
         # Additional config
-        self.timezone = get_system_tz() # e.g., self.timezone = "Pacific/Honolulu"
+        self.timezone = get_system_tz()  # e.g., self.timezone = "Pacific/Honolulu"
 
         self.day_start_hour = 8  # inclusive
         self.day_end_hour = 19  # exclusive
@@ -119,8 +119,6 @@ class DayPlanner(inkycal_module):
         # Gets all events from midnight today local time to midnight tomorrow local time. (Have to use UTC tz, not local
         # tz with UTC offset.)
 
-
-
         self.ical = iCalendar()
 
         # Load icalendar from config
@@ -147,7 +145,6 @@ class DayPlanner(inkycal_module):
         # for _ in events:
         #     print ('* ' + _['title'] + ": " + _["begin"].format("h:mm a") + " - " + _["end"].format("h:mm a"))
 
-
         # set the message for all-day events
         allday_message_position = (0, 40)
         self.get_allday_message(im_black, events, margin, allday_message_position)
@@ -158,7 +155,7 @@ class DayPlanner(inkycal_module):
         grid = DayGrid(self, im_black=im_black, im_colour=im_colour, minor_tick_thickness=1, major_tick_thickness=3,
                        tick_distance=9, initial_y=120, margin=margin)
         grid.draw_caret(self, im_colour)
-        grid.draw_events(self,im_black, events)
+        grid.draw_events(self, im_black, events)
 
         # draw_border(im_black, xy=(0-24, 0-34), size=((self.width+46), (im_black.height-20)))
         # return the images ready for the display
@@ -179,8 +176,8 @@ class DayPlanner(inkycal_module):
     def get_first_current_event(events: list, now: arrow.Arrow, exclude_all_day=False):
         for _ in events:
             if _["begin"] <= now <= _["end"]:
-                if (excludeAllDay and not iCalendar.all_day(_)) or (not exclude_all_day):
-                    return  _
+                if (exclude_all_day and not iCalendar.all_day(_)) or (not exclude_all_day):
+                    return _
 
     @staticmethod
     def get_allday_events(events, blocking_only=False):
@@ -219,12 +216,14 @@ class DayPlanner(inkycal_module):
                         fill_colour="black"
                     )
             else:
+                event_end = self.get_first_current_event(events, now, exclude_all_day=True)["end"]
                 write(
                     im_colour,
                     (0, 0),
                     (self.width, 40),
-                    text="In meetings until " + self.get_first_current_event(events, now, excludeAllDay=True)["end"]
-                        .format('h:mm a'),
+                    text=("In meetings until " + self.get_first_current_event(events, now, exclude_all_day=True)["end"]
+                                                    .format('h:mm a')) if event_end > now.ceil("day")
+                    else "In meetings for the rest of the day",
                     font=ImageFont.truetype(fonts["NotoSansUI-Bold"], 25),
                     colour="white",
                     fill_colour="black"
@@ -271,6 +270,7 @@ class DayPlanner(inkycal_module):
         # order events chronologically
         def _sort_by_start_time(event):
             return event["begin"]
+
         events.sort(reverse=False, key=_sort_by_start_time)
         # for each event
         x = 0
@@ -299,8 +299,10 @@ class DayPlanner(inkycal_module):
         # return list of events
         return events
 
+
 if __name__ == '__main__':
     from inkycal.custom.merger import merge
+
     print(f'running {filename} in standalone mode')
     with open('/Users/dcostoy/PycharmProjects/Inkycal/settings.json') as settings_file:
         settings = json.load(settings_file)
@@ -308,4 +310,4 @@ if __name__ == '__main__':
         img.save(f"module_dayplanner_black.png", "PNG")
         color.save(f"module_dayplanner_color.png", "PNG")
         merged = merge("module_dayplanner_black.png", "module_dayplanner_color.png",
-                                     "module_dayplanner_merged")
+                       "module_dayplanner_merged")
