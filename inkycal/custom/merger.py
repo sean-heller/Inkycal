@@ -5,7 +5,8 @@ image1_path = "/home/pi/Desktop/cal.png"
 image2_path = "/home/pi/Desktop/cal2.png"
 output_file = "/home/pi/Desktop/merged.png"
 
-def merge(image1, image2, out_filename):
+
+def merge(image1_path, image2_path, out_filename):
   """Merge black pixels from image2 into image 1
   module_name = name of the module generating the image
   out_filename = what name to give to the finished file

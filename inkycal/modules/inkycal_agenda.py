@@ -10,6 +10,7 @@ from inkycal.modules.template import inkycal_module
 from inkycal.custom import *
 from inkycal.modules.ical_parser import iCalendar
 
+
 import calendar as cal
 import arrow
 
@@ -242,10 +243,6 @@ class Agenda(inkycal_module):
     # return the images ready for the display
     return im_black, im_colour
 
+
 if __name__ == '__main__':
   print(f'running {filename} in standalone mode')
-  # with open('/Users/seanheller/dev/personal/Inkycal/settings.json') as settings_file:
-  #   settings = json.load(settings_file)
-  #   img,color = Agenda(settings["modules"][0]).generate_image()
-  #   img.save(f"moduleagenda_black.png", "PNG")
-  #   color.save(f"moduleagenda_color.png", "PNG")

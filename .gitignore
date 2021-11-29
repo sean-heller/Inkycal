@@ -3,6 +3,7 @@ __pycache__/
 _build
 _static
 _templates
+images/
 
 # virtual environment files
 bin/
@@ -15,4 +16,7 @@ pyvenv.cfg
 settings.json
 
 #logs
-logs
+*.log
+
+#.idea
+.idea
